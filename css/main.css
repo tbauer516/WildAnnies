@@ -1,3 +1,7 @@
+body {
+	padding-top: 70px;
+}
+
 .centered {
     width: 600px;
     margin-left: auto;
@@ -6,6 +10,20 @@
 
 .fb-page, .fb-page iframe[style], .fb-page span {
     width: 100% !important;
+}
+
+.logo {
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+}
+
+.logo-box {
+	padding: 0px 0px 0px 10px;
+}
+
+.nav li {
+	font-size: 20pt;
 }
 
 .ui-container {
