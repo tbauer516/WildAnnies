@@ -3,3 +3,11 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+.fb-page, .fb-page iframe[style], .fb-page span {
+    width: 100% !important;
+}
+
+.ui-container {
+	width: 100%;
+}

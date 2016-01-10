@@ -1,13 +1,13 @@
 'use strict';
 
-angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'firebase'])
+angular.module('WildAnnie', ['ui.router', 'ui.bootstrap'])
 
-.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
         .state('home', {
             url: '/',
             templateUrl: 'partials/home.html',
-            controller: 'WildAnnieCtrl'
+            controller: 'HomeCtrl'
         })
         .state('map', {
             url: '/map',
@@ -19,6 +19,8 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'firebase'])
             templateUrl: 'partials/about.html',
             controller: 'AboutCtrl'
         });
+
+    // $locationProvider.html5Mode(true);
 
     $urlRouterProvider.otherwise('/#');
 }])
@@ -32,9 +34,35 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'firebase'])
 
 }])
 
+.controller('HomeCtrl', ['$scope', function($scope) {
+
+    // $scope.getFeed = function() {
+    //     console.log('called');
+    //     /* make the API call */
+    //     FB.api(
+    //         "/147513818956534/feed?access_token=CAAJMocfJwj8BAB0pzaDOd5njDyZBHEZBZAEHLn1pc7LvQNmS5Op1q6GTfnQh21PIoNURmWaT1QLUVpUh4jpt2HZCfhsBJwZAxDT9AdYX70kW4qyLKFiYxEuTuOSU9FrBBW0cya38G4LnpPMTV5MIBZBwZBEMI9lDJgYRfp4eIh5CfUxe1M7vhsLldAZBfoSLn2UZD",
+    //         function (response) {
+    //             if (response) {
+    //                 /* handle the result */
+    //                 console.log(response);
+    //             }
+    //         }
+    //     );
+    // }
+
+    // $scope.init = function() {
+    //     FB.XFBML.parse();
+    // }
+
+    $scope.$on('$locationChangeSuccess', function() {
+        FB.XFBML.parse();
+    });
+
+}])
+
 .controller('MapCtrl', ['$scope', function($scope) {
 
-
+ 
 
 }])
 
@@ -42,4 +70,32 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'firebase'])
 
 
 
-}]);
+}])
+
+.directive('resize', function ($window) {
+    return function (scope, element) {
+        var w = angular.element($window);
+        scope.getWindowDimensions = function () {
+            return {
+                'h': w.height(),
+                'w': w.width()
+            };
+        };
+        scope.$watch(scope.getWindowDimensions, function (newValue, oldValue) {
+            scope.windowHeight = newValue.h;
+            scope.windowWidth = newValue.w;
+
+            scope.style = function () {
+                return {
+                    'height': (newValue.h - 100) + 'px',
+                        'width': (newValue.w - 100) + 'px'
+                };
+            };
+
+        }, true);
+
+        w.bind('resize', function () {
+            scope.$apply();
+        });
+    }
+});
