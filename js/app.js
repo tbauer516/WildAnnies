@@ -9,6 +9,11 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap'])
             templateUrl: 'partials/home.html',
             controller: 'HomeCtrl'
         })
+        .state('menu', {
+            url: '/menu',
+            templateUrl: 'partials/menu.html',
+            controller: 'MenuCtrl'
+        })
         .state('map', {
             url: '/map',
             templateUrl: 'partials/map.html',
@@ -57,6 +62,12 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap'])
     $scope.$on('$locationChangeSuccess', function() {
         FB.XFBML.parse();
     });
+
+}])
+
+.controller('MenuCtrl', ['$scope', function($scope) {
+
+
 
 }])
 

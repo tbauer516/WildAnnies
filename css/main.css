@@ -1,5 +1,13 @@
+/*
+	dark-gray	#656565
+	light-gray	#C4C4C4
+	red 		#560F0F
+	light-red 	#C90000
+*/
+
 body {
 	padding-top: 70px;
+	font-family: 'Josefin Sans', sans-serif;
 }
 
 .centered {
@@ -12,6 +20,18 @@ body {
     width: 100% !important;
 }
 
+footer {
+	background-color: #C4C4C4;
+	padding-top: 5px;
+	padding-bottom: 15px;
+	margin-top: 15px;
+}
+
+footer p {
+	margin-bottom: 0px;
+	font-size: 10pt;
+}
+
 .logo {
 	display: inline-block;
 	height: 100%;
@@ -22,8 +42,16 @@ body {
 	padding: 0px 0px 0px 10px;
 }
 
+.nav-main {
+	background-color: #C4C4C4;
+}
+
 .nav li {
 	font-size: 20pt;
+}
+
+.text-right {
+	text-align: left;
 }
 
 .ui-container {
@@ -34,22 +62,24 @@ body {
 /* No media query since this is the default in Bootstrap */
 
 /* Small devices (tablets, 768px and up) */
-@media (min-width: @screen-sm-min) {
+@media screen and (min-width: 768px) {
 
 
 
 }
 
 /* Medium devices (desktops, 992px and up) */
-@media (min-width: @screen-md-min) {
+@media screen and (min-width: 992px) {
 
 
 
 }
 
 /* Large devices (large desktops, 1200px and up) */
-@media (min-width: @screen-lg-min) {
+@media screen and (min-width: 1200px) {
 
-
+	.text-right {
+		text-align: right;
+	}
 	
 }

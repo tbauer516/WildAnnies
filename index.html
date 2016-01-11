@@ -23,8 +23,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <!-- Google Font -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Oxygen:400,700)">
+    <!-- Google Font <Josefin Sans> -->
+    <link href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,400italic,700' rel='stylesheet' type='text/css'>
     <!-- our CSS -->
     <link rel="stylesheet" href="css/main.css" />
     <!-- Angular -->
@@ -45,7 +45,7 @@
     <script type="text/javascript" src="lib/fbsdk.js"></script>
  
     <nav class="navbar navbar-default navbar-fixed-top ng-scope">
-            <div class="container-fluid">
+            <div class="container-fluid nav-main">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" ng-click="menuCollapsed = !menuCollapsed">
                         <span class="sr-only">Toggle navigation</span>
@@ -61,6 +61,7 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse" uib-collapse="!menuCollapsed" aria-expanded="false" aria-hidden="true" style="height: 0px;">
                     <ul class="nav navbar-nav">
+                        <li><a ui-sref="menu" href="/menu" ng-click="menuCollapsed = !menuCollapsed">Menu</a></li>
                         <li><a ui-sref="map" href="/map" ng-click="menuCollapsed = !menuCollapsed">Map</a></li>
                         <li><a ui-sref="about" href="/about" ng-click="menuCollapsed = !menuCollapsed">About</a></li>
                     </ul>
@@ -71,6 +72,17 @@
         </nav>
 
     <div ui-view class="ui-container"></div>
+
+    <footer>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+                <p>Designed and Created by Tyler Bauer, University of Washington Student</p>
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                <p class="text-right">&copy;Wild Annie's Food Truck | All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- our Javascript -->
     <script src="js/app.js"></script>
