@@ -39,7 +39,7 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap'])
 
 }])
 
-.controller('HomeCtrl', ['$scope', function($scope) {
+.controller('HomeCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 
     // $scope.getFeed = function() {
     //     console.log('called');
@@ -58,6 +58,25 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap'])
     // $scope.init = function() {
     //     FB.XFBML.parse();
     // }
+
+    $scope.rendered = false;
+
+    var render = function() {
+        var timer = $timeout(function() {
+            FB.XFBML.parse();
+            console.log('looped');
+            render();
+        }, 1000);
+
+        FB.Event.subscribe('xfbml.render', function(response) {
+            $timeout.cancel(timer);
+            console.log('rendered.... finally!');
+            $scope.rendered = true;
+            $scope.$apply();
+        });
+    }
+
+    render();
 
     $scope.$on('$locationChangeSuccess', function() {
         FB.XFBML.parse();
