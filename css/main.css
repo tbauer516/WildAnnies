@@ -8,6 +8,7 @@
 body {
 	padding-top: 70px;
 	font-family: 'Josefin Sans', sans-serif;
+	font-size: 12pt;
 }
 
 .centered {
@@ -25,6 +26,10 @@ footer {
 	padding-top: 5px;
 	padding-bottom: 15px;
 	margin-top: 15px;
+	margin-right: 0px;
+	margin-left: 0px;
+	padding-left: 15px;
+	padding-right: 15px;
 }
 
 footer p {
@@ -42,6 +47,32 @@ footer p {
 	padding: 0px 0px 0px 10px;
 }
 
+.max-500 {
+	max-width: 500px;
+	right: 0;
+}
+
+.menu {
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+.menu h1 {
+	font-size: 20pt;
+	font-weight: bold;
+}
+
+.menu td, .menu h2 {
+	font-size: 16pt;
+	font-weight: bold;
+}
+
+.menu dd {
+	font-size: 12pt;
+}
+
 .nav-main {
 	background-color: #C4C4C4;
 }
@@ -50,8 +81,32 @@ footer p {
 	font-size: 20pt;
 }
 
+.pad-left {
+	padding-left: 10px;
+	border-left-width: 3px;
+}
+
+.pad-right {
+	padding-right: 10px;
+	border-right-width: 3px;
+}
+
 .text-right {
 	text-align: left;
+}
+
+.right {
+	text-align: right;
+}
+
+ul, .slogan {
+	padding-left: 20px;
+}
+
+ul li {
+	list-style: none;
+	margin-bottom: 5px;
+	font-size: 12pt;
 }
 
 .ui-container {
@@ -64,7 +119,9 @@ footer p {
 /* Small devices (tablets, 768px and up) */
 @media screen and (min-width: 768px) {
 
-
+	.text-right {
+		text-align: right;
+	}
 
 }
 
@@ -78,8 +135,6 @@ footer p {
 /* Large devices (large desktops, 1200px and up) */
 @media screen and (min-width: 1200px) {
 
-	.text-right {
-		text-align: right;
-	}
+	
 	
 }
