@@ -46,10 +46,25 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
     $scope.feed = undefined;
 
     $scope.getFeed = function() {
+        var pageID = '147513818956534';
+
+        var timeout = 5000,
+            load_error;
+
+        load_error = function (jqXHR, textStatus, errorThrown) {
+            if (errorThrown === "timeout") {
+                alert('Server bussy');
+            } else {
+                alert('error: 404', textStatus + ": " + errorThrown);
+            }
+        };
+
         $http({
-          method: 'POST',
-          url: 'proxy.php',
-          data: {graphUrl: 'https://graph.facebook.com/147513818956534/feed'}
+            method: 'POST',
+            url: 'proxy.php',
+            data: {graphUrl: 'https://graph.facebook.com/' + pageID + '/feed'},
+            timeout:  timeout,
+            error: load_error,
         }).then(function successCallback(response) {
             console.log(response.data);
             $scope.feed = response.data;
