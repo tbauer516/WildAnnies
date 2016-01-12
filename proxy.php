@@ -5,7 +5,9 @@ header("Cache-Control: no-cache");
 header("Pragma: no-cache");
 header('Content-Type: application/json; charset=utf-8'); 
 
-$graphUrl = $_POST[graphUrl];
+$_JSON = json_decode(file_get_contents("php://input"), true);
+
+$graphUrl = $_JSON[graphUrl];
 if ($graphUrl == "") {
     $graphUrl = "https://graph.facebook.com/facebook/feed/";
 }
