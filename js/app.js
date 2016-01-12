@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('WildAnnie', ['ui.router', 'ui.bootstrap'])
+angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angulartics.piwik'])
 
 .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
