@@ -7,7 +7,7 @@ header('Content-Type: application/json; charset=utf-8');
 
 $graphUrl = $_POST[graphUrl];
 if ($graphUrl == "") {
-    $graphUrl = "https://graph.facebook.com/147513818956534/feed/";
+    $graphUrl = "https://graph.facebook.com/facebook/feed/";
 }
 
 //App Info, needed for Auth
