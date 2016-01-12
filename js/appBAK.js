@@ -41,45 +41,46 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
 
 }])
 
-.controller('HomeCtrl', ['$scope', '$timeout', '$http', function($scope, $timeout, $http) {
+.controller('HomeCtrl', ['$scope', '$timeout', function($scope, $timeout) {
 
-    $scope.feed = undefined;
-
-    $scope.getFeed = function() {
-        $http({
-          method: 'POST',
-          url: 'proxy.php',
-          data: {graphUrl: 'https://graph.facebook.com/147513818956534/feed'}
-        }).then(function successCallback(response) {
-            console.log(response.data);
-            $scope.feed = response.data;
-          }, function errorCallback(response) {
-
-          });
-    }
-
-    $scope.getFeed();
-
-    // $scope.rendered = false;
-
-    // render = function() {
-    //     var timer = $timeout(function() {
-    //         FB.XFBML.parse();
-    //         console.log('looped');
-    //         render();
-    //     }, 1000);
-
-    //     FB.Event.subscribe('xfbml.render', function(response) {
-    //         $timeout.cancel(timer);
-    //         console.log('rendered.... finally!');
-    //         $scope.rendered = true;
-    //         $scope.$apply();
-    //     });
+    // $scope.getFeed = function() {
+    //     console.log('called');
+    //     /* make the API call */
+    //     FB.api(
+    //         "/147513818956534/feed?access_token=CAAJMocfJwj8BAB0pzaDOd5njDyZBHEZBZAEHLn1pc7LvQNmS5Op1q6GTfnQh21PIoNURmWaT1QLUVpUh4jpt2HZCfhsBJwZAxDT9AdYX70kW4qyLKFiYxEuTuOSU9FrBBW0cya38G4LnpPMTV5MIBZBwZBEMI9lDJgYRfp4eIh5CfUxe1M7vhsLldAZBfoSLn2UZD",
+    //         function (response) {
+    //             if (response) {
+    //                 /* handle the result */
+    //                 console.log(response);
+    //             }
+    //         }
+    //     );
     // }
 
-    // $scope.$on('$locationChangeSuccess', function() {
+    // $scope.init = function() {
     //     FB.XFBML.parse();
-    // });
+    // }
+
+    $scope.rendered = false;
+
+    render = function() {
+        var timer = $timeout(function() {
+            FB.XFBML.parse();
+            console.log('looped');
+            render();
+        }, 1000);
+
+        FB.Event.subscribe('xfbml.render', function(response) {
+            $timeout.cancel(timer);
+            console.log('rendered.... finally!');
+            $scope.rendered = true;
+            $scope.$apply();
+        });
+    }
+
+    $scope.$on('$locationChangeSuccess', function() {
+        FB.XFBML.parse();
+    });
 
 }])
 
