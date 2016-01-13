@@ -62,7 +62,6 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
         $http({
             method: 'POST',
             url: 'facebook-php/proxy.php',
-            data: {graphUrl: 'https://graph.facebook.com/' + pageID + '/feed'},
             timeout:  timeout,
             error: load_error,
         }).then(function successCallback(response) {
