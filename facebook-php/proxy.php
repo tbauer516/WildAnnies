@@ -23,6 +23,8 @@ try {
 	echo $e;
 }
 
+$fb->setDefaultAccessToken("{token}");
+
 try {
 	$response = $fb->get('/' . $pageid . '/feed');
 	echo $response;
