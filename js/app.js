@@ -61,7 +61,7 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
 
         $http({
             method: 'POST',
-            url: 'proxy.php',
+            url: 'facebook-php/proxy.php',
             data: {graphUrl: 'https://graph.facebook.com/' + pageID + '/feed'},
             timeout:  timeout,
             error: load_error,
@@ -74,27 +74,6 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
     }
 
     $scope.getFeed();
-
-    // $scope.rendered = false;
-
-    // render = function() {
-    //     var timer = $timeout(function() {
-    //         FB.XFBML.parse();
-    //         console.log('looped');
-    //         render();
-    //     }, 1000);
-
-    //     FB.Event.subscribe('xfbml.render', function(response) {
-    //         $timeout.cancel(timer);
-    //         console.log('rendered.... finally!');
-    //         $scope.rendered = true;
-    //         $scope.$apply();
-    //     });
-    // }
-
-    // $scope.$on('$locationChangeSuccess', function() {
-    //     FB.XFBML.parse();
-    // });
 
 }])
 
