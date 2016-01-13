@@ -19,8 +19,9 @@ $token = $app_id . '|' . $app_secret;
 $fb->setDefaultAccessToken($token);
 
 try {
-	$response = $fb->get('/' . $pageid . '/feed', $token);
-	echo $response;
+	$response = $fb->get('/' . $pageid . '/feed');
+	$object = $response->getGraphObject();
+	echo $object;
 } catch(Facebook\Exceptions\FacebookResponseException $e) {
 	echo $e;
 }
