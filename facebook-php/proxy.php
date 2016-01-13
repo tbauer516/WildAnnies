@@ -9,21 +9,14 @@ $app_secret = '59be331e39208086fd66d5c30e5b63fe';
 $pageid = '147513818956534';
 
 $fb = new Facebook\Facebook([
-	'app_id' => '{app-id}',
-	'app_secret' => '{app-secret}',
+	'app_id' => $app_id,
+	'app_secret' => $app_secret,
 	'default_graph_version' => 'v2.5',
 ]);
 
-$token = '';
+$token = $app_id . '|' . $app_secret;
 
-try {
-	$response = $fb->get('/oauth/access_token?type=client_cred&client_id={$app_id}&client_secret={$app_secret}');
-	$token = $response;
-} catch(Facebook\Exceptions\FacebookResponseException $e) {
-	echo $e;
-}
-
-$fb->setDefaultAccessToken("{token}");
+$fb->setDefaultAccessToken($token);
 
 try {
 	$response = $fb->get('/' . $pageid . '/feed');
