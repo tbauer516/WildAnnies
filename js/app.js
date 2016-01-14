@@ -60,8 +60,8 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
         };
 
         $http({
-            method: 'POST',
-            url: '../facebook-php/proxy.php',
+            method: 'GET',
+            url: 'facebook-php/proxy.php',
             timeout:  timeout,
             error: load_error,
         }).then(function successCallback(response) {

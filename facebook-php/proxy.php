@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/Facebook/autoload.php';
+header('Content-Type: application/json');
 
 //App Info, needed for Auth
 $app_id = '647207678755391';
