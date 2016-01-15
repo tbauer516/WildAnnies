@@ -1,5 +1,4 @@
 <?php
-session_start();
 define('FACEBOOK_SDK_V5_SRC_DIR', __DIR__ . '/facebook-sdk-v5/');
 require(__DIR__ . '/facebook-sdk-v5/autoload.php');
 // header('Content-Type: application/json');
