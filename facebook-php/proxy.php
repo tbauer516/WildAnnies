@@ -24,9 +24,9 @@ $fb->setDefaultAccessToken($token);
 echo 'before try<br>';
 
 try {
-	$response = $fb->get('/me');#'/' . $pageid . '/feed');
+	$response = $fb->get('/' . $pageid . '/feed');
 	echo 'response<br>';
-	$object = $response->getGraphUser();
+	$object = $response->getGraphObject();
 	echo 'after request<br>';
 	echo $object;
 } catch(Facebook\Exceptions\FacebookResponseException $e) {
