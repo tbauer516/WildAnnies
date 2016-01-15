@@ -1,4 +1,5 @@
 <?php
+define('FACEBOOK_SDK_V4_SRC_DIR', __DIR__ . '/facebook-php/');
 require_once(__DIR__ . '/Facebook/autoload.php');
 header('Content-Type: application/json');
 
