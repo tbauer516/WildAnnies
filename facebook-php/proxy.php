@@ -28,6 +28,7 @@ try {
 	echo $response;
 	$object = $response->getGraphObject();
 	echo $object;
+	echo 'after request';
 } catch(Facebook\Exceptions\FacebookResponseException $e) {
 	echo 'failed';
 	echo $e;
