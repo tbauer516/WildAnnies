@@ -69,15 +69,21 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
             });
         }
 
-        for (var j = 0; j < edges.length; j++) {
-            $http.get(graph + '/' + edges[j] + '?' + authToken)
-            .then(function successCallback(response) {
-                console.log(response.data);
-                $scope.feed[edges[j]] = response.data[edges[j]];
-            }, function errorCallback(response) {
-                console.log(response);
-            });
-        }        
+        $http.get(graph + '/' + edges[0] + '?' + authToken)
+        .then(function successCallback(response) {
+            console.log(response.data);
+            $scope.feed[edges[0]] = response.data[edges[0]];
+        }, function errorCallback(response) {
+            console.log(response);
+        });
+
+        $http.get(graph + '/' + edges[1] + '?' + authToken)
+        .then(function successCallback(response) {
+            console.log(response.data);
+            $scope.feed[edges[1]] = response.data[edges[1]];
+        }, function errorCallback(response) {
+            console.log(response);
+        });
     }
 
     $scope.getFeed();
