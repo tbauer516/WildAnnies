@@ -10,7 +10,7 @@ header('Content-Type: application/json; charset=utf-8');
 $pageid = '147513818956534';
 $field = 'general_info';
 $edge = 'posts';
-$graphField = "https://graph.facebook.com/" . $pageid . "?field=" . $field . "/";
+$graphField = "https://graph.facebook.com/" . $pageid . "?fields=" . $field . "/";
 $graphEdge = "https://graph.facebook.com/" . $pageid . "/" . $edge . "/";
 
 //retrieve auth token
