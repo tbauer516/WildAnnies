@@ -26,6 +26,7 @@ echo 'before session<br>';
 
 FacebookSession::setDefaultApplication($app_id, $app_secret);
 $session = new FacebookSession($token);
+$session = FacebookSession::newAppSession();
 
 echo 'before try<br>';
 
