@@ -56,7 +56,7 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
             'picture',
             'posts'
         ];
-        var graph = "https://graph.facebook.com/" . $pageid;
+        var graph = 'https://graph.facebook.com/' + pageid;
 
         // $http.get('fb-php/page-feed.php')
 
