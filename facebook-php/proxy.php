@@ -19,10 +19,10 @@ $fb = new Facebook\Facebook([
 $token = 'CAAJMocfJwj8BAIZCdERPi0vAD23BZCv8soKBZASh9BAZAUijTFsgdj0oOedaE9rPwjARhAaAaj03ZAIQwCEXffMjQCs0LxgQCvmXZA0p8Pa1o9wjZBLgj3TevIZCKzZCIgnITPSjo4s4hdnjk2tiQaTe95zxLJ8Yezg9i8ZCedNsR9aVuDmMGaroyZA';
 $fb->setDefaultAccessToken($token);
 
-echo 'before session<br>'
+echo 'before session<br>';
 
-// FacebookSession::setDefaultApplication($app_id, $app_secret);
-// $session = new FacebookSession($token);
+FacebookSession::setDefaultApplication($app_id, $app_secret);
+$session = new FacebookSession($token);
 
 echo 'before try<br>';
 
