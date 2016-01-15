@@ -5,21 +5,23 @@ header("Cache-Control: no-cache");
 header("Pragma: no-cache");
 header('Content-Type: application/json; charset=utf-8'); 
 
-$_JSON = json_decode(file_get_contents("php://input"), true);
+// $_JSON = json_decode(file_get_contents("php://input"), true);
 
 $pageid = '147513818956534';
-
-$graphUrl = "https://graph.facebook.com/" . $pageid . "/feed/";
+$field = 'general_info';
+$graphUrl = "https://graph.facebook.com/" . $pageid . "/" . $field . "/";
 
 //App Info, needed for Auth
 $app_id = "647207678755391";
 $app_secret = file_get_contents('secret.txt');
-
 //retrieve auth token
 $authToken = 'access_token=CAAJMocfJwj8BAIZCdERPi0vAD23BZCv8soKBZASh9BAZAUijTFsgdj0oOedaE9rPwjARhAaAaj03ZAIQwCEXffMjQCs0LxgQCvmXZA0p8Pa1o9wjZBLgj3TevIZCKzZCIgnITPSjo4s4hdnjk2tiQaTe95zxLJ8Yezg9i8ZCedNsR9aVuDmMGaroyZA';
 
 //Echo back json to read client side.
-echo fetchUrl("{$graphUrl}?{$authToken}");
+echo $pageDet = json_decode(fetchUrl("{$graphUrl}?{$authToken}"));
+
+$field = 'cover';
+echo $pageCover = json_decode(fetchUrl("{$graphUrl}?{$authToken}"));
 
 function fetchUrl($url){
     $ch = curl_init();
