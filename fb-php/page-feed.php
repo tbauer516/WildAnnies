@@ -15,11 +15,11 @@ $graphField = "https://graph.facebook.com/" . $pageid . "?{$authToken}&fields=" 
 $graphEdge = "https://graph.facebook.com/" . $pageid . "/" . $edge . "?" . $authToken;
 
 //Echo back json to read client side.
-echo fetchUrl("{$graphField}?{$authToken}");
+echo fetchUrl("{$graphField}");
 echo '<br>';
 echo '<br>';
 $field = 'cover';
-echo fetchUrl("{$graphField}?{$authToken}");
+echo fetchUrl("{$graphField}");
 
 function fetchUrl($url){
     $ch = curl_init();
