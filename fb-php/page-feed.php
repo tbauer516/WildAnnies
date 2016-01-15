@@ -3,7 +3,7 @@
 header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 header("Cache-Control: no-cache");
 header("Pragma: no-cache");
-header('Content-Type: application/json; charset=utf-8'); 
+// header('Content-Type: application/json; charset=utf-8'); 
 
 // $_JSON = json_decode(file_get_contents("php://input"), true);
 
@@ -18,8 +18,9 @@ $app_secret = file_get_contents('secret.txt');
 $authToken = 'access_token=CAAJMocfJwj8BAIZCdERPi0vAD23BZCv8soKBZASh9BAZAUijTFsgdj0oOedaE9rPwjARhAaAaj03ZAIQwCEXffMjQCs0LxgQCvmXZA0p8Pa1o9wjZBLgj3TevIZCKzZCIgnITPSjo4s4hdnjk2tiQaTe95zxLJ8Yezg9i8ZCedNsR9aVuDmMGaroyZA';
 
 //Echo back json to read client side.
-$pageDet = json_decode(fetchUrl("{$graphUrl}?{$authToken}"));
-
+echo $pageDet = json_decode(fetchUrl("{$graphUrl}?{$authToken}"));
+echo '<br>';
+echo '<br>';
 $field = 'cover';
 echo $pageCover = json_decode(fetchUrl("{$graphUrl}?{$authToken}"));
 
