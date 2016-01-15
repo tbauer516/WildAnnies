@@ -26,6 +26,13 @@ echo 'before try<br>';
 try {
 	$response = $fb->get('/' . $pageid . '/feed');
 	echo 'response<br>';
+	$request = new FacebookRequest(
+		$session,
+		'GET',
+		'/{page-id}/feed'
+	);
+	$response = $request->execute();
+	$graphObject = $response->getGraphObject();
 	$object = $response->getGraphObject();
 	echo 'after request<br>';
 	echo $object;
