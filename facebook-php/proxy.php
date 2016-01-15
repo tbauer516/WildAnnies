@@ -31,10 +31,11 @@ try {
 		'GET',
 		'/{$pageid}/feed'
 	);
+	echo 'request<br>';
 	$response = $request->execute();
-	$graphObject = $response->getGraphObject();
+	echo 'execute<br>';
 	$object = $response->getGraphObject();
-	echo 'after request<br>';
+	echo 'after object<br>';
 	echo $object;
 } catch(Facebook\Exceptions\FacebookResponseException $e) {
 	echo 'failed<br>';
