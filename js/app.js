@@ -46,10 +46,8 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
     $scope.getFeed = function() {
         var pageID = '147513818956534';
 
-        $http({
-            method: 'GET',
-            url: 'facebook-php/proxy.php'
-        }).then(function successCallback(response) {
+        $http.get('facebook-php/proxy.php')
+        .then(function successCallback(response) {
             console.log(response.data);
             $scope.feed = response.data;
           }, function errorCallback(response) {
