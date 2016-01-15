@@ -58,22 +58,36 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
         ];
         var graph = 'https://graph.facebook.com/' + pageid;
 
-        // $http.get('fb-php/page-feed.php')
-        for (var i = 0; i < fields.length; i++) {
-            var index = i;
-            $http.get(graph + '?fields=' + fields[index] + '&' + authToken)
-            .then(function successCallback(response) {
-                console.log(response.data);
-                $scope.feed[fields[index]] = response.data[fields[index]];
-            }, function errorCallback(response) {
-                console.log(response);
-            });
-        }
+        // HTTP Fields calls
+        $http.get(graph + '?fields=name&' + authToken)
+        .then(function successCallback(response) {
+            console.log(response.data);
+            $scope.feed.name = response.data.name;
+        }, function errorCallback(response) {
+            console.log(response);
+        });
 
+        $http.get(graph + '?fields=description&' + authToken)
+        .then(function successCallback(response) {
+            console.log(response.data);
+            $scope.feed.description = response.data.description;
+        }, function errorCallback(response) {
+            console.log(response);
+        });
+
+        $http.get(graph + '?fields=cover&' + authToken)
+        .then(function successCallback(response) {
+            console.log(response.data);
+            $scope.feed.cover = response.data.cover.source;
+        }, function errorCallback(response) {
+            console.log(response);
+        });
+
+        // HTTP Edges calls
         $http.get(graph + '/picture?' + authToken)
         .then(function successCallback(response) {
             console.log(response);
-            $scope.feed['picture'] = response.data;
+            $scope.feed.picture = response.data;
         }, function errorCallback(response) {
             console.log(response);
         });
@@ -81,7 +95,16 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
         $http.get(graph + '/posts?' + authToken)
         .then(function successCallback(response) {
             console.log(response.data);
-            
+            $scope.feed.posts = [];
+            for (var k = 0; k < response.data.length; k++) {
+                $http.get(graph + '/post/' + response.data[k].id + '?' + authToken)
+                .then(function successCallback(response) {
+                    console.log(response);
+                    $scope.feed.posts.push(response);
+                }, function errorCallback(response) {
+                    console.log(response);
+                });
+            }
         }, function errorCallback(response) {
             console.log(response);
         });
@@ -91,7 +114,7 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
     setTimeout(function() {
         console.log($scope.feed);
     }
-    ,3000);
+    ,5000);
 
 }])
 
