@@ -70,7 +70,7 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
         }
 
         for (var j = 0; j < edges.length; j++) {
-            $http.get(graph + '/' + edges[j] + '&' + authToken)
+            $http.get(graph + '/' + edges[j] + '?' + authToken)
             .then(function successCallback(response) {
                 console.log(response.data);
                 $scope.feed[edges[j]] = response.data[edges[j]];
