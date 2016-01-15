@@ -27,7 +27,6 @@ try {
 	$response = $fb->get('/' . $pageid . '/feed');
 	echo 'response<br>';
 	$request = new FacebookRequest(
-		$session,
 		'GET',
 		'/{$pageid}/feed'
 	);
