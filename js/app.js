@@ -45,7 +45,7 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
 
     $scope.getFeed = function() {
      
-        $http.get('temp/proxy.php')
+        $http.get('fb-php/page-feed.php')
         .then(function successCallback(response) {
             console.log(response.data);
             $scope.feed = response.data;
