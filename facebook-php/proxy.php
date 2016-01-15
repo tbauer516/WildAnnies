@@ -1,8 +1,11 @@
 <?php
-define('FACEBOOK_SDK_V5_SRC_DIR', __DIR__ . '/facebook-sdk-v5/');
-require(__DIR__ . '/facebook-sdk-v5/autoload.php');
+define('FACEBOOK_SDK_V5_SRC_DIR', __DIR__ . '/Facebook/');
+require(__DIR__ . '/Facebook/autoload.php');
 // header('Content-Type: application/json');
 error_reporting(E_ALL);
+
+use Facebook\FacebookSession;
+
 echo 'after reporting<br>';
 //App Info, needed for Auth
 $app_id = '647207678755391';
