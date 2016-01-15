@@ -21,7 +21,7 @@ $token = 'CAAJMocfJwj8BAIZCdERPi0vAD23BZCv8soKBZASh9BAZAUijTFsgdj0oOedaE9rPwjARh
 $fb->setDefaultAccessToken($token);
 
 try {
-	$response = $fb->get('/' . $pageid . '/feed');
+	$response = $fb->get('/me');#'/' . $pageid . '/feed');
 	$object = $response->getGraphObject();
 	echo $response;
 } catch(Facebook\Exceptions\FacebookResponseException $e) {
