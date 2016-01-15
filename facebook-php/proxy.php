@@ -14,8 +14,8 @@ $app_secret = '59be331e39208086fd66d5c30e5b63fe';
 $pageid = '147513818956534';
 
 $fb = new Facebook\Facebook([
-	'app_id' => $app_id,
-	'app_secret' => $app_secret,
+	'app_id' => '647207678755391',
+	'app_secret' => '59be331e39208086fd66d5c30e5b63fe',
 	'default_graph_version' => 'v2.5',
 ]);
 
