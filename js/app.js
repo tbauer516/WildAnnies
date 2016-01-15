@@ -87,9 +87,10 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
     }
 
     $scope.getFeed();
-    setTimout(3000) {
+    setTimeout(function() {
         console.log($scope.feed);
     }
+    ,3000);
 
 }])
 
