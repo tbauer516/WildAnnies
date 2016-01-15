@@ -21,8 +21,8 @@ $fb->setDefaultAccessToken($token);
 
 echo 'before session<br>'
 
-FacebookSession::setDefaultApplication($app_id, $app_secret);
-$session = new FacebookSession($token);
+// FacebookSession::setDefaultApplication($app_id, $app_secret);
+// $session = new FacebookSession($token);
 
 echo 'before try<br>';
 
