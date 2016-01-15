@@ -41,7 +41,7 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
 
 .controller('HomeCtrl', ['$scope', '$timeout', '$http', function($scope, $timeout, $http) {
 
-    $scope.feed = undefined;
+    $scope.feed = [];
 
     $scope.getFeed = function() {
      
@@ -63,6 +63,7 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
         $http.get(graph + '?fields=' + fields[0] + '&' + authToken)
         .then(function successCallback(response) {
             console.log(response.data);
+            $scope.feed.push(fields[0]: response.data.name);
         }, function errorCallback(response) {
             console.log(response);
         });
