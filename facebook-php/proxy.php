@@ -15,7 +15,7 @@ $fb = new Facebook\Facebook([
 	'default_graph_version' => 'v2.5',
 ]);
 
-$token = $app_id . '|' . $app_secret;
+$token = 'CAAJMocfJwj8BAIZCdERPi0vAD23BZCv8soKBZASh9BAZAUijTFsgdj0oOedaE9rPwjARhAaAaj03ZAIQwCEXffMjQCs0LxgQCvmXZA0p8Pa1o9wjZBLgj3TevIZCKzZCIgnITPSjo4s4hdnjk2tiQaTe95zxLJ8Yezg9i8ZCedNsR9aVuDmMGaroyZA';
 
 $fb->setDefaultAccessToken($token);
 
