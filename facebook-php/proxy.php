@@ -1,6 +1,6 @@
 <?php
-define('FACEBOOK_SDK_V5_SRC_DIR', __DIR__ . '/facebook-sdk-v5/');
-require_once(__DIR__ . '/facebook-sdk-v5/autoload.php');
+define('FACEBOOK_SDK_V5_SRC_DIR', __DIR__ . '/facebook-php/facebook-sdk-v5/');
+require_once(__DIR__ . '/facebook-php/facebook-sdk-v5/autoload.php');
 header('Content-Type: application/json');
 error_reporting(E_ALL);
 
