@@ -1,16 +1,16 @@
 <?php
-define('FACEBOOK_SDK_V5_SRC_DIR', __DIR__ . '/facebook-php/facebook-sdk-v5/');
-require_once(__DIR__ . '/facebook-php/facebook-sdk-v5/autoload.php');
-header('Content-Type: application/json');
+define('FACEBOOK_SDK_V5_SRC_DIR', __DIR__ . '/facebook-sdk-v5/');
+require_once(__DIR__ . '/facebook-sdk-v5/autoload.php');
+// header('Content-Type: application/json');
 error_reporting(E_ALL);
-
+echo 'after reporting';
 //App Info, needed for Auth
 $app_id = '647207678755391';
 $app_secret = '59be331e39208086fd66d5c30e5b63fe';
 
 // set page id
 $pageid = '147513818956534';
-
+echo 'before fb';
 $fb = new Facebook\Facebook([
 	'app_id' => '647207678755391',
 	'app_secret' => '59be331e39208086fd66d5c30e5b63fe',
