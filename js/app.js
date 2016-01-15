@@ -1,7 +1,5 @@
 'use strict';
 
-var render = undefined;
-
 angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angulartics.piwik'])
 
 .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
@@ -68,7 +66,7 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
             console.log(response.data);
             $scope.feed = response.data;
           }, function errorCallback(response) {
-
+            console.log(response.error);
           });
     }
 
