@@ -23,15 +23,15 @@ $fb->setDefaultAccessToken($token);
 
 echo 'before try';
 
-try {
+// try {
 	$response = $fb->get('/me');#'/' . $pageid . '/feed');
 	echo $response;
 	$object = $response->getGraphObject();
 	echo $object;
 	echo 'after request';
-} catch(Facebook\Exceptions\FacebookResponseException $e) {
+// } catch(Facebook\Exceptions\FacebookResponseException $e) {
 	echo 'failed';
 	echo $e;
-}
+// }
 
 ?>
