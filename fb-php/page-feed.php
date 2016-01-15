@@ -9,7 +9,9 @@ header("Pragma: no-cache");
 
 $pageid = '147513818956534';
 $field = 'general_info';
-$graphUrl = "https://graph.facebook.com/" . $pageid . "/" . $field . "/";
+$edge = 'posts';
+$graphField = "https://graph.facebook.com/" . $pageid . "?field=" . $field . "/";
+$graphEdge = "https://graph.facebook.com/" . $pageid . "/" . $edge . "/";
 
 //App Info, needed for Auth
 $app_id = "647207678755391";
@@ -18,11 +20,11 @@ $app_secret = file_get_contents('secret.txt');
 $authToken = 'access_token=CAAJMocfJwj8BAIZCdERPi0vAD23BZCv8soKBZASh9BAZAUijTFsgdj0oOedaE9rPwjARhAaAaj03ZAIQwCEXffMjQCs0LxgQCvmXZA0p8Pa1o9wjZBLgj3TevIZCKzZCIgnITPSjo4s4hdnjk2tiQaTe95zxLJ8Yezg9i8ZCedNsR9aVuDmMGaroyZA';
 
 //Echo back json to read client side.
-echo $pageDet = json_decode(fetchUrl("{$graphUrl}?{$authToken}"));
+echo $pageDet = json_decode(fetchUrl("{$graphField}?{$authToken}"));
 echo '<br>';
 echo '<br>';
 $field = 'cover';
-echo $pageCover = json_decode(fetchUrl("{$graphUrl}?{$authToken}"));
+echo $pageCover = json_decode(fetchUrl("{$graphEdge}?{$authToken}"));
 
 function fetchUrl($url){
     $ch = curl_init();
