@@ -50,9 +50,9 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
         .then(function successCallback(response) {
             console.log(response.data);
             $scope.feed = response.data;
-          }, function errorCallback(response) {
-            console.log(response);
-          });
+        }, function errorCallback(response) {
+            
+        });
     }
 
     $scope.getFeed();
