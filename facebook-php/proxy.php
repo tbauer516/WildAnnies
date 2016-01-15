@@ -1,7 +1,7 @@
 <?php
 define('FACEBOOK_SDK_V5_SRC_DIR', __DIR__ . '/facebook-sdk-v5/');
 require_once(__DIR__ . '/facebook-sdk-v5/autoload.php');
-// header('Content-Type: application/json');
+header('Content-Type: application/json');
 error_reporting(E_ALL);
 echo 'after reporting';
 //App Info, needed for Auth
@@ -23,15 +23,15 @@ $fb->setDefaultAccessToken($token);
 
 echo 'before try';
 
-// try {
+try {
 	$response = $fb->get('/me');#'/' . $pageid . '/feed');
 	echo $response;
 	$object = $response->getGraphObject();
 	echo $object;
 	echo 'after request';
-// } catch(Facebook\Exceptions\FacebookResponseException $e) {
+} catch(Exception $e) {
 	echo 'failed';
 	echo $e;
-// }
+}
 
 ?>
