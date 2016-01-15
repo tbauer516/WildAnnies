@@ -3,7 +3,7 @@
 header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 header("Cache-Control: no-cache");
 header("Pragma: no-cache");
-header('Content-Type: application/json; charset=utf-8'); 
+// header('Content-Type: application/json; charset=utf-8'); 
 
 // $_JSON = json_decode(file_get_contents("php://input"), true);
 
@@ -18,18 +18,15 @@ $edges = array(
 	0 => 'picture',
 	1 => 'posts'
 );
-$graphField = "https://graph.facebook.com/" . $pageid . "?fields=" . $field . "&" . $authToken;
-$graphEdge = "https://graph.facebook.com/" . $pageid . "/" . $edge . "?" . $authToken;
+$graph = "https://graph.facebook.com/" . $pageid;
 
 //Echo back json to read client side.
-$field = $fields[0];
-echo $graphField;
 echo '<br>';
-echo fetchUrl("{$graphField}");
+echo fetchUrl($graph . "?fields=" . $fields[0] . "&" . $authToken);
 echo '<br>';
 echo '<br>';
 $field = 'cover';
-echo fetchUrl("{$graphField}");
+echo fetchUrl($graph . "?fields=" . $fields[1] . "&" . $authToken);
 
 function fetchUrl($url){
     $ch = curl_init();
