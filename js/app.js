@@ -60,27 +60,28 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
 
         // $http.get('fb-php/page-feed.php')
         for (var i = 0; i < fields.length; i++) {
-            $http.get(graph + '?fields=' + fields[i] + '&' + authToken)
+            var index = i;
+            $http.get(graph + '?fields=' + fields[index] + '&' + authToken)
             .then(function successCallback(response) {
                 console.log(response.data);
-                $scope.feed[fields[i]] = response.data[fields[i]];
+                $scope.feed[fields[index]] = response.data[fields[index]];
             }, function errorCallback(response) {
                 console.log(response);
             });
         }
 
-        $http.get(graph + '/' + edges[0] + '?' + authToken)
+        $http.get(graph + '/picture?' + authToken)
         .then(function successCallback(response) {
             console.log(response);
-            $scope.feed[edges[0]] = response[edges[0]];
+            $scope.feed['picture'] = response.data;
         }, function errorCallback(response) {
             console.log(response);
         });
 
-        $http.get(graph + '/' + edges[1] + '?' + authToken)
+        $http.get(graph + '/posts?' + authToken)
         .then(function successCallback(response) {
             console.log(response.data);
-            $scope.feed[edges[1]] = response.data[edges[1]];
+            
         }, function errorCallback(response) {
             console.log(response);
         });
