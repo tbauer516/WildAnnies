@@ -2,6 +2,9 @@
 define('FACEBOOK_SDK_V5_SRC_DIR', __DIR__ . '/facebook-sdk-v5/');
 require_once(__DIR__ . '/facebook-sdk-v5/autoload.php');
 // header('Content-Type: application/json');
+
+FacebookSession::setDefaultApplication($facebookAPP_ID, $facebookAPP_SECRET);
+$session = FacebookSession::newAppSession($facebookAPP_ID, $facebookAPP_SECRET);
 error_reporting(E_ALL);
 echo 'after reporting<br>';
 //App Info, needed for Auth
