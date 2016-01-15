@@ -15,6 +15,8 @@ $graphField = "https://graph.facebook.com/" . $pageid . "?{$authToken}&fields=" 
 $graphEdge = "https://graph.facebook.com/" . $pageid . "/" . $edge . "?" . $authToken;
 
 //Echo back json to read client side.
+echo $graphField;
+echo '<br>';
 echo fetchUrl("{$graphField}");
 echo '<br>';
 echo '<br>';
