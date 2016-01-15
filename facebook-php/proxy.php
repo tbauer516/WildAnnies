@@ -29,7 +29,7 @@ try {
 	$request = new FacebookRequest(
 		$session,
 		'GET',
-		'/' . $pageid . '/feed'
+		'/{$pageid}/feed'
 	);
 	$response = $request->execute();
 	$graphObject = $response->getGraphObject();
