@@ -7,9 +7,11 @@ header('Content-Type: application/json; charset=utf-8');
 
 $_JSON = json_decode(file_get_contents("php://input"), true);
 
+$pageid = '147513818956534';
+
 $graphUrl = $_JSON[graphUrl];
 if ($graphUrl == "") {
-    $graphUrl = "https://graph.facebook.com/facebook/feed/";
+    $graphUrl = "https://graph.facebook.com/" . $pageid . "/feed/";
 }
 
 //App Info, needed for Auth
