@@ -3,7 +3,7 @@
 header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 header("Cache-Control: no-cache");
 header("Pragma: no-cache");
-// header('Content-Type: application/json; charset=utf-8'); 
+header('Content-Type: application/json; charset=utf-8'); 
 
 // $_JSON = json_decode(file_get_contents("php://input"), true);
 
@@ -17,11 +17,11 @@ $graphEdge = "https://graph.facebook.com/" . $pageid . "/" . $edge . "/";
 $authToken = 'access_token=CAAJMocfJwj8BAIZCdERPi0vAD23BZCv8soKBZASh9BAZAUijTFsgdj0oOedaE9rPwjARhAaAaj03ZAIQwCEXffMjQCs0LxgQCvmXZA0p8Pa1o9wjZBLgj3TevIZCKzZCIgnITPSjo4s4hdnjk2tiQaTe95zxLJ8Yezg9i8ZCedNsR9aVuDmMGaroyZA';
 
 //Echo back json to read client side.
-echo $pageDet = json_decode(fetchUrl("{$graphField}?{$authToken}"));
+echo fetchUrl("{$graphField}?{$authToken}");
 echo '<br>';
 echo '<br>';
 $field = 'cover';
-echo $pageCover = json_decode(fetchUrl("{$graphEdge}?{$authToken}"));
+echo fetchUrl("{$graphField}?{$authToken}");
 
 function fetchUrl($url){
     $ch = curl_init();
