@@ -31,6 +31,7 @@ echo 'before try<br>';
 try {
 	$response = $fb->get('/' . $pageid . '/feed');
 	echo 'response<br>';
+	echo $response;
 } catch(Facebook\Exceptions\FacebookResponseException $e) {
 	echo 'failed<br>';
 	echo $e->getMessage();
