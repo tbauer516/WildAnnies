@@ -45,10 +45,24 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
 
     $scope.getFeed = function() {
      
-        $http.get('fb-php/page-feed.php')
+        var pageid = '147513818956534';
+        var authToken = 'access_token=CAAJMocfJwj8BAIZCdERPi0vAD23BZCv8soKBZASh9BAZAUijTFsgdj0oOedaE9rPwjARhAaAaj03ZAIQwCEXffMjQCs0LxgQCvmXZA0p8Pa1o9wjZBLgj3TevIZCKzZCIgnITPSjo4s4hdnjk2tiQaTe95zxLJ8Yezg9i8ZCedNsR9aVuDmMGaroyZA';
+        var fields = [
+            'name',
+            'description',
+            'cover'
+        ];
+        var edges = [
+            'picture',
+            'posts'
+        ];
+        var graph = "https://graph.facebook.com/" . $pageid;
+
+        // $http.get('fb-php/page-feed.php')
+
+        $http.get(graph + '?fields=' + fields[0] + '&' + authToken)
         .then(function successCallback(response) {
             console.log(response.data);
-            $scope.feed = response.data;
         }, function errorCallback(response) {
             console.log(response);
         });
