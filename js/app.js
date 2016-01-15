@@ -71,8 +71,8 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
 
         $http.get(graph + '/' + edges[0] + '?' + authToken)
         .then(function successCallback(response) {
-            console.log(response.data);
-            $scope.feed[edges[0]] = response.data[edges[0]];
+            console.log(response);
+            $scope.feed[edges[0]] = response[edges[0]];
         }, function errorCallback(response) {
             console.log(response);
         });
