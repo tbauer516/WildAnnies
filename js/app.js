@@ -66,7 +66,7 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
             console.log(response.data);
             $scope.feed = response.data;
           }, function errorCallback(response) {
-            console.log(response.error);
+            console.log(response);
           });
     }
 
