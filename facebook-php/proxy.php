@@ -25,11 +25,11 @@ echo 'before try';
 
 try {
 	$response = $fb->get('/me');#'/' . $pageid . '/feed');
-	echo $response;
-	$object = $response->getGraphObject();
-	echo $object;
+	echo 'response';
+	$object = $response->getGraphUser();
 	echo 'after request';
-} catch(Exception $e) {
+	echo $object;
+} catch(Facebook\Exceptions\FacebookResponseException $e) {
 	echo 'failed';
 	echo $e->getMessage();
 }
