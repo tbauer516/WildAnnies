@@ -9,10 +9,7 @@ $_JSON = json_decode(file_get_contents("php://input"), true);
 
 $pageid = '147513818956534';
 
-$graphUrl = $_JSON[graphUrl];
-if ($graphUrl == "") {
-    $graphUrl = "https://graph.facebook.com/" . $pageid . "/feed/";
-}
+$graphUrl = "https://graph.facebook.com/" . $pageid . "/feed/";
 
 //App Info, needed for Auth
 $app_id = "647207678755391";
