@@ -4,8 +4,6 @@ require(__DIR__ . '/Facebook/autoload.php');
 // header('Content-Type: application/json');
 error_reporting(E_ALL);
 
-use Facebook\FacebookSession;
-
 echo 'after reporting<br>';
 //App Info, needed for Auth
 $app_id = '647207678755391';
@@ -24,9 +22,9 @@ $fb->setDefaultAccessToken($token);
 
 echo 'before session<br>';
 
-FacebookSession::setDefaultApplication($app_id, $app_secret);
-$session = new FacebookSession($token);
-$session = FacebookSession::newAppSession();
+// FacebookSession::setDefaultApplication($app_id, $app_secret);
+// $session = new FacebookSession($token);
+// $session = FacebookSession::newAppSession();
 
 echo 'before try<br>';
 
