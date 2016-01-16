@@ -96,6 +96,19 @@ footer p {
 	border-right-width: 3px;
 }
 
+.photo-cover {
+	background-size: 100% auto;
+	height: 300px;
+	background-repeat: no-repeat;
+	background-position: 0% 20%;
+	position: relative;
+}
+
+.photo-profile {
+	position: absolute;
+	bottom: 0;
+}
+
 .text-right {
 	text-align: left;
 }

@@ -84,10 +84,10 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
         });
 
         // HTTP Edges calls
-        $http.get(graph + '/picture?' + authToken)
+        $http.get(graph + '/picture?redirect=false')
         .then(function successCallback(response) {
             console.log(response);
-            $scope.feed.picture = response.data;
+            $scope.feed.picture = response.data.data.url;
         }, function errorCallback(response) {
             console.log(response);
         });
@@ -95,16 +95,32 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
         $http.get(graph + '/posts?' + authToken)
         .then(function successCallback(response) {
             console.log(response.data);
-            $scope.feed.posts = [];
-            for (var k = 0; k < response.data.length; k++) {
-                console.log('loop' + k);
-                $http.get('https://graph.facebook.com/' + response.data[k].id + '?' + authToken)
-                .then(function successCallback(response) {
-                    console.log(response);
-                    $scope.feed.posts.push(response);
-                }, function errorCallback(response) {
-                    console.log(response);
-                });
+            $scope.feed.posts = {};
+            for (var k = 0; k < response.data.data.length; k++) {
+                (function(index) {
+                    if (response.data.data[index].message) {
+                        $scope.feed.posts[response.data.data[index].id] = {
+                            'type': 'message',
+                            'message': response.data.data[index].message,
+                            'time': response.data.data[index].created_time
+                        }
+                    } else if (response.data.data[index].story) {
+                        $http.get('https://graph.facebook.com/' + response.data.data[index].id + '/attachments?' + authToken)
+                        .then(function successCallback(resp) {
+                            console.log(resp);
+                            $scope.feed.posts[response.data.data[index].id] = {
+                                'type': resp.data.data[0].type,
+                                'story': response.data.data[index].story,
+                                'time': response.data.data[index].created_time
+                            };
+                            if (resp.data.data[0].type.indexOf('photo') !== -1) {
+                                $scope.feed.posts[response.data.data[index].id].photo = resp.data.data[0].media.image.src;
+                            }
+                        }, function errorCallback(resp) {
+                            console.log(resp);
+                        });
+                    }
+                })(k);
             }
         }, function errorCallback(response) {
             console.log(response);
