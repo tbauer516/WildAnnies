@@ -97,6 +97,7 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
             console.log(response.data);
             $scope.feed.posts = [];
             for (var k = 0; k < response.data.length; k++) {
+                console.log('loop' + k);
                 $http.get('https://graph.facebook.com/' + response.data[k].id + '?' + authToken)
                 .then(function successCallback(response) {
                     console.log(response);
