@@ -11,7 +11,7 @@
 
 			<div>
 				<h1>Hours of Operation</h1>
-				<ul>
+				<ul class="time-schedule">
 					<li><div class="row"><div class="col-xs-6 col-sm-6">
 								Monday
 							</div><div class="right col-xs-6 col-sm-6">
@@ -64,12 +64,17 @@
 				<div class="photo-cover" ng-style="{'background-image': 'url(' + feed.cover + ')'}">
 					<img class="photo-profile" ng-src="{{feed.picture}}" alt="profile picture">
 				</div>
-				<div ng-repeat="post in feed.posts | orderBy: 'post.time'">
-					<div>
+				<div class="post" ng-repeat="post in feed.posts | orderBy: 'post.time'">
+					<ul>
+						<!-- <li class="post-heading">{{feed.name}}</li> -->
+						<li class="post-message">{{post.message || post.story}}</li>
+						<li class="post-time">{{post.time | date: 'M-d-y: h:ma'}}</li>
+					</ul>
+					<!-- <div>
 						{{feed.name}}<br>
 						{{post.time | date: 'M-d-y: h:ma'}}<br>
 						{{post.message || post.story}}
-					</div>
+					</div> -->
 				</div>
 			</div>
 

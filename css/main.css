@@ -6,7 +6,6 @@
 */
 
 body {
-	padding-top: 70px;
 	font-family: 'Josefin Sans', sans-serif;
 	font-size: 12pt;
 }
@@ -79,6 +78,10 @@ footer p {
 	font-size: 12pt;
 }
 
+nav {
+	border-bottom-width: 0px;
+}
+
 .nav-main {
 	background-color: #C4C4C4;
 }
@@ -110,6 +113,23 @@ footer p {
 	bottom: 0;
 }
 
+.post {
+	
+}
+
+.post ul {
+	list-style: none;
+}
+
+.post-message {
+	font-size: 20pt;
+	font-weight: bold;
+}
+
+.post-time {
+	font-size: 16pt;
+}
+
 .text-right {
 	text-align: left;
 }
@@ -122,13 +142,14 @@ ul, .slogan {
 	padding-left: 20px;
 }
 
-ul li {
+.time-schedule li {
 	list-style: none;
 	margin-bottom: 5px;
-	font-size: 12pt;
+	font-size: 16pt;
 }
 
 .ui-container {
+	padding-top: 70px;
 	width: 100%;
 }
 

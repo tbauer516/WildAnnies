@@ -133,6 +133,25 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
     }
     ,5000);
 
+
+    var main = document.querySelector('.ui-container');
+    var footer = document.querySelector('footer');
+
+    var mainPadding;
+    var footerHeight;
+    var footerMarginTop;
+    
+    try {
+        footerHeight = parseInt(window.getComputedStyle(footer, null).getPropertyValue('height'));
+        footerMarginTop = parseInt(window.getComputedStyle(footer, null).getPropertyValue('margin-top'));
+    } catch(e) {
+        footerHeight = parseInt(footer.currentStyle.height);
+        footerMarginTop = parseInt(footer.currentStyle.marginTop);
+    } 
+
+    var height = window.innerHeight;
+    main.style.minHeight = (height - (footerHeight + footerMarginTop)) + 'px';
+
 }])
 
 .controller('MenuCtrl', ['$scope', function($scope) {
@@ -153,7 +172,7 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
 
 }])
 
-.directive('resize', function ($window) {
+.directive('setMinHeight', function ($window) {
     return function (scope, element) {
         var w = angular.element($window);
         scope.getWindowDimensions = function () {
@@ -175,7 +194,7 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
 
         }, true);
 
-        w.bind('resize', function () {
+        w.bind('setMinHeight', function () {
             scope.$apply();
         });
     }
