@@ -35,7 +35,37 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
 // the other ui-views
 .controller('WildAnnieCtrl', ['$scope', function($scope) {
 
+    $scope.setSize = function() {
+        var main = document.querySelector('.ui-container');
+        var footer = document.querySelector('footer');
 
+        var mainPadding;
+        var footerHeight;
+        var footerMarginTop;
+        
+        try {
+            footerHeight = parseInt(window.getComputedStyle(footer, null).getPropertyValue('height'));
+            footerMarginTop = parseInt(window.getComputedStyle(footer, null).getPropertyValue('margin-top'));
+        } catch(e) {
+            footerHeight = parseInt(footer.currentStyle.height);
+            footerMarginTop = parseInt(footer.currentStyle.marginTop);
+        } 
+
+        var height = window.innerHeight;
+        main.style.minHeight = (height - (footerHeight + footerMarginTop)) + 'px';
+    }
+
+    // $scope.$on('$stateChangeSuccess', function () {
+    //     $scope.setSize();
+    // });
+
+    // $scope.$on('$routeChangeSuccess', function () {
+    //     $scope.setSize();
+    // });
+
+    $scope.$on('$viewContentLoaded', function() {
+        $scope.setSize();
+    });
 
 }])
 
@@ -132,25 +162,6 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
         console.log($scope.feed);
     }
     ,5000);
-
-
-    var main = document.querySelector('.ui-container');
-    var footer = document.querySelector('footer');
-
-    var mainPadding;
-    var footerHeight;
-    var footerMarginTop;
-    
-    try {
-        footerHeight = parseInt(window.getComputedStyle(footer, null).getPropertyValue('height'));
-        footerMarginTop = parseInt(window.getComputedStyle(footer, null).getPropertyValue('margin-top'));
-    } catch(e) {
-        footerHeight = parseInt(footer.currentStyle.height);
-        footerMarginTop = parseInt(footer.currentStyle.marginTop);
-    } 
-
-    var height = window.innerHeight;
-    main.style.minHeight = (height - (footerHeight + footerMarginTop)) + 'px';
 
 }])
 

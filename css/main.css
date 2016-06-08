@@ -11,7 +11,6 @@ body {
 }
 
 .centered {
-    width: 600px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -51,8 +50,13 @@ footer p {
 	padding: 0px 0px 0px 10px;
 }
 
+.map {
+	max-width: 600px;
+	max-height: 600px;
+}
+
 .max-500 {
-	max-width: 500px;
+	/*max-width: 500px;*/
 	margin-left: auto;
 	margin-right: auto;
 }
