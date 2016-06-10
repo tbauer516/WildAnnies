@@ -5,6 +5,15 @@
 	light-red 	#C90000
 */
 
+a, a:hover, a:focus {
+	color: currentColor;
+	text-decoration: none;
+}
+
+.about-page h1, .home h1, .home h2 {
+	margin-top: 0px;
+}
+
 body {
 	font-family: 'Josefin Sans', sans-serif;
 	font-size: 12pt;
@@ -13,6 +22,7 @@ body {
 .centered {
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
 }
 
 .fb-page, .fb-page iframe[style], .fb-page span {
@@ -51,14 +61,12 @@ footer p {
 }
 
 .map {
-	max-width: 600px;
-	max-height: 600px;
+	/*max-width: 600px;
+	max-height: 600px;*/
 }
 
-.max-500 {
-	/*max-width: 500px;*/
-	margin-left: auto;
-	margin-right: auto;
+#map-frame {
+	display: inline-block;
 }
 
 .menu {
@@ -94,6 +102,10 @@ nav {
 	font-size: 20pt;
 }
 
+.no-margin {
+	margin: 0px;
+}
+
 .pad-left {
 	padding-left: 10px;
 	border-left-width: 3px;
@@ -117,12 +129,38 @@ nav {
 	bottom: 0;
 }
 
-.post {
+.posts {
 	
 }
 
-.post ul {
+.posts ul {
 	list-style: none;
+}
+
+.posts-list {
+	padding: 0px;
+	margin-bottom: 0px;
+}
+
+.post:nth-child(odd) {
+	background-color: #C4C4C4;
+}
+
+.post {
+	padding: 10px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.post-master {
+	border-width: 2px;
+	border-style: solid;
+	border-color: #656565;
+}
+
+.post p {
+	margin-bottom: 5px;
+	margin-top: 5px;
 }
 
 .post-message {
@@ -157,11 +195,33 @@ ul, .slogan {
 	width: 100%;
 }
 
+.window {
+
+}
+
+.window img {
+	width: 100%;
+	height: auto;
+}
+
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */
 
 /* Small devices (tablets, 768px and up) */
 @media screen and (min-width: 768px) {
+
+	body {
+		font-size: 16pt;
+	}
+
+	.post-message {
+		font-size: 16pt;
+		font-weight: bold;
+	}
+
+	.post-time {
+		font-size: 12pt;
+	}
 
 	.text-right {
 		text-align: right;

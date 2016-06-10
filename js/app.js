@@ -39,7 +39,6 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
         var main = document.querySelector('.ui-container');
         var footer = document.querySelector('footer');
 
-        var mainPadding;
         var footerHeight;
         var footerMarginTop;
         
@@ -67,6 +66,14 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
         $scope.setSize();
     });
 
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            // User is signed in.
+        } else {
+            // No user is signed in.
+        }
+    });
+
 }])
 
 .controller('HomeCtrl', ['$scope', '$timeout', '$http', function($scope, $timeout, $http) {
@@ -87,6 +94,7 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
             'posts'
         ];
         var graph = 'https://graph.facebook.com/' + pageid;
+        var linkUrl = 'http://facebook.com/wild.annies.food.truck' + '/posts/';
 
         // HTTP Fields calls
         $http.get(graph + '?fields=name&' + authToken)
@@ -122,18 +130,23 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
             console.log(response);
         });
 
-        $http.get(graph + '/posts?' + authToken)
+        $http.get(graph + '/posts?' + authToken + "&limit=15")
         .then(function successCallback(response) {
             console.log(response.data);
             $scope.feed.posts = {};
             for (var k = 0; k < response.data.data.length; k++) {
                 (function(index) {
+                    var postid = response.data.data[index].id;
+                    var postFragments = postid.split('_');
+                    postid = postFragments[1];
+
                     if (response.data.data[index].message) {
                         $scope.feed.posts[response.data.data[index].id] = {
                             'type': 'message',
                             'message': response.data.data[index].message,
                             'time': response.data.data[index].created_time
                         }
+                        $scope.feed.posts[response.data.data[index].id].link = linkUrl + postid;
                     } else if (response.data.data[index].story) {
                         $http.get('https://graph.facebook.com/' + response.data.data[index].id + '/attachments?' + authToken)
                         .then(function successCallback(resp) {
@@ -146,6 +159,7 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
                             if (resp.data.data[0].type.indexOf('photo') !== -1) {
                                 $scope.feed.posts[response.data.data[index].id].photo = resp.data.data[0].media.image.src;
                             }
+                            $scope.feed.posts[response.data.data[index].id].link = linkUrl + postid;
                         }, function errorCallback(resp) {
                             console.log(resp);
                         });
@@ -173,7 +187,36 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
 
 .controller('MapCtrl', ['$scope', function($scope) {
 
- 
+    $scope.setMapSize = function() {
+        var main = document.querySelector('#map-frame');
+        var footer = document.querySelector('footer');
+        var nav = document.querySelector('nav');
+
+        var footerHeight;
+        var footerMarginTop;
+        var navHeight;
+        var navMarginBottom;
+        
+        try {
+            footerHeight = parseInt(window.getComputedStyle(footer, null).getPropertyValue('height'));
+            footerMarginTop = parseInt(window.getComputedStyle(footer, null).getPropertyValue('margin-top'));
+            navHeight = parseInt(window.getComputedStyle(nav, null).getPropertyValue('height'));
+            navMarginBottom = parseInt(window.getComputedStyle(nav, null).getPropertyValue('margin-bottom'));
+        } catch(e) {
+            footerHeight = parseInt(footer.currentStyle.height);
+            footerMarginTop = parseInt(footer.currentStyle.marginTop);
+        } 
+
+        var height = window.innerHeight;
+        var width = window.innerWidth;
+        main.style.height = (height - (footerHeight + footerMarginTop + navHeight + navMarginBottom) - 10) + 'px';
+        main.style.width = (width - 20) + 'px';
+        main.style.maxHeight = "800px";
+        main.style.maxWidth = "800px";
+        // main.style.padding = "20px";
+    }
+
+    $scope.setMapSize();
 
 }])
 
