@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angulartics.piwik', 'angulartics.google.analytics'])
+angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angulartics.piwik', 'angulartics.google.analytics', 'duScroll'])
 
 .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
@@ -76,9 +76,11 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
 
 }])
 
-.controller('HomeCtrl', ['$scope', '$timeout', '$http', function($scope, $timeout, $http) {
+.controller('HomeCtrl', ['$scope', '$document', '$timeout', '$http', function($scope, $document, $timeout, $http) {
 
     $scope.feed = [];
+
+    $scope.pageUrl = 'http://www.facebook.com/wild.annies.food.truck/';
 
     $scope.getFeed = function() {
      
@@ -94,9 +96,9 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
             'posts'
         ];
         var graph = 'https://graph.facebook.com/' + pageid;
-        var linkUrl = 'http://facebook.com/wild.annies.food.truck' + '/posts/';
+        var linkUrl = $scope.pageUrl + '/posts/';
 
-        // HTTP Fields calls
+        // HTTP Name of Page Call
         $http.get(graph + '?fields=name&' + authToken)
         .then(function successCallback(response) {
             console.log(response.data);
@@ -105,6 +107,7 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
             console.log(response);
         });
 
+        // HTTP Description Call
         $http.get(graph + '?fields=description&' + authToken)
         .then(function successCallback(response) {
             console.log(response.data);
@@ -113,6 +116,7 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
             console.log(response);
         });
 
+        // HTTP Cover call
         $http.get(graph + '?fields=cover&' + authToken)
         .then(function successCallback(response) {
             console.log(response.data);
@@ -121,7 +125,7 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
             console.log(response);
         });
 
-        // HTTP Edges calls
+        // HTTP Profile Pic call
         $http.get(graph + '/picture?redirect=false')
         .then(function successCallback(response) {
             console.log(response);
@@ -130,10 +134,11 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
             console.log(response);
         });
 
+        // HTTP Feed Calls
         $http.get(graph + '/posts?' + authToken + "&limit=15")
         .then(function successCallback(response) {
             console.log(response.data);
-            $scope.feed.posts = {};
+            $scope.feed.posts = [];
             for (var k = 0; k < response.data.data.length; k++) {
                 (function(index) {
                     var postid = response.data.data[index].id;
@@ -141,25 +146,25 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
                     postid = postFragments[1];
 
                     if (response.data.data[index].message) {
-                        $scope.feed.posts[response.data.data[index].id] = {
+                        $scope.feed.posts.push({
                             'type': 'message',
                             'message': response.data.data[index].message,
-                            'time': response.data.data[index].created_time
-                        }
-                        $scope.feed.posts[response.data.data[index].id].link = linkUrl + postid;
+                            'time': parseInt(Date.parse(response.data.data[index].created_time))
+                        });
+                        $scope.feed.posts[$scope.feed.posts.length - 1].link = linkUrl + postid;
                     } else if (response.data.data[index].story) {
                         $http.get('https://graph.facebook.com/' + response.data.data[index].id + '/attachments?' + authToken)
                         .then(function successCallback(resp) {
                             console.log(resp);
-                            $scope.feed.posts[response.data.data[index].id] = {
+                            $scope.feed.posts.push({
                                 'type': resp.data.data[0].type,
                                 'story': response.data.data[index].story,
-                                'time': response.data.data[index].created_time
-                            };
+                                'time': parseInt(Date.parse(response.data.data[index].created_time))
+                            });
                             if (resp.data.data[0].type.indexOf('photo') !== -1) {
-                                $scope.feed.posts[response.data.data[index].id].photo = resp.data.data[0].media.image.src;
+                                $scope.feed.posts[$scope.feed.posts.length - 1].photo = resp.data.data[0].media.image.src;
                             }
-                            $scope.feed.posts[response.data.data[index].id].link = linkUrl + postid;
+                            $scope.feed.posts[$scope.feed.posts.length - 1].link = linkUrl + postid;
                         }, function errorCallback(resp) {
                             console.log(resp);
                         });
@@ -176,6 +181,24 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
         console.log($scope.feed);
     }
     ,5000);
+
+    $scope.scrollToTop = function() {
+        $document.scrollTo(0, 0, 500);
+    }
+
+    $scope.shouldBeVisible = false;
+
+    $document.on('scroll', function() {
+        console.log('Document scrolled to ', $document.scrollLeft(), $document.scrollTop());
+        if ($document.scrollTop() > 300) {
+            $scope.shouldBeVisible = true;
+            document.getElementById("toTop").setAttribute("animation-name", "toTop");
+        } else {
+            document.getElementById("toTop").setAttribute("animation-name", "toBot");
+            $scope.shouldBeVisible = false;
+        }
+        $scope.$apply();
+    });
 
 }])
 

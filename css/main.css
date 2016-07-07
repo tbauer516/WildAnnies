@@ -17,6 +17,15 @@ a, a:hover, a:focus {
 body {
 	font-family: 'Josefin Sans', sans-serif;
 	font-size: 12pt;
+
+	background-image: url("../img/background.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100%;
+	width: 100%;
+	background-attachment: fixed;
+	background-position: center;
+	/*position: fixed;*/
 }
 
 .centered {
@@ -43,6 +52,18 @@ footer {
 footer p {
 	margin-bottom: 0px;
 	font-size: 10pt;
+}
+
+img {
+	height: 100%;
+	width: 100%;
+}
+
+.img-container {
+	width: 25%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 100px;
 }
 
 .loading {
@@ -116,6 +137,10 @@ nav {
 	border-right-width: 3px;
 }
 
+.page-title {
+	text-align: center;
+}
+
 .photo-cover {
 	background-size: 100% auto;
 	height: 300px;
@@ -180,14 +205,37 @@ nav {
 	text-align: right;
 }
 
-ul, .slogan {
-	padding-left: 20px;
+.section {
+	padding-top: 50px;
+	padding-bottom: 50px;
+	margin: 0px;
+}
+
+@keyframes toTop {
+	from { bottom: -30px; }
+	to { bottom: 30px; }
+}
+
+@keyframes toBot {
+	from { bottom: 30px; }
+	to { bottom: -30px; }
+}
+
+#toTop {
+	position: fixed;
+	bottom: 30px;
+	left: 30px;
+	animation-duration: .5s;
 }
 
 .time-schedule li {
 	list-style: none;
 	margin-bottom: 5px;
 	font-size: 16pt;
+}
+
+ul, .slogan {
+	padding-left: 20px;
 }
 
 .ui-container {
@@ -202,6 +250,18 @@ ul, .slogan {
 .window img {
 	width: 100%;
 	height: auto;
+}
+
+.wood {
+	background-image: url("../img/wood_background.jpg");
+	color: #FFD5AA;
+}
+
+.wood-green {
+	background-image: url("../img/static_fine_wood.png");
+	background-color: rgba(133, 179, 84, 1);
+	color: #000000;
+	font-weight: 500;
 }
 
 /* Extra small devices (phones, less than 768px) */
