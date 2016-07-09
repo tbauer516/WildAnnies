@@ -84,7 +84,7 @@
 				<div class="posts">
 					<ul class="posts-list">
 						<!-- <li class="post-heading">{{feed.name}}</li> -->
-						<li class="post" ng-repeat="post in feed.posts | orderBy: 'post.time'">
+						<li class="post" ng-repeat="post in feed.posts | orderBy: '-time'">
 							<div>
 								<a ng-href="{{post.link}}" target="_blank">
 									<p class="post-message">{{post.message || post.story}}</p>

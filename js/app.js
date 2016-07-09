@@ -133,7 +133,7 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
         $http.get(graph + '/posts?' + authToken + "&limit=15")
         .then(function successCallback(response) {
             console.log(response.data);
-            $scope.feed.posts = {};
+            $scope.feed.posts = [];
             for (var k = 0; k < response.data.data.length; k++) {
                 (function(index) {
                     var postid = response.data.data[index].id;
