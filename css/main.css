@@ -19,6 +19,17 @@ body {
 	font-size: 12pt;
 }
 
+#home {
+	background-image: url("../img/background.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	/*height: 100%;
+	width: 100%;*/
+	background-attachment: fixed;
+	background-position: center;
+	/*position: fixed;*/
+}
+
 .centered {
     margin-left: auto;
     margin-right: auto;
@@ -43,6 +54,18 @@ footer {
 footer p {
 	margin-bottom: 0px;
 	font-size: 10pt;
+}
+
+img {
+	height: 100%;
+	width: 100%;
+}
+
+.img-container {
+	width: 25%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 100px;
 }
 
 .loading {
@@ -116,6 +139,11 @@ nav {
 	border-right-width: 3px;
 }
 
+.page-title {
+	text-align: center;
+	padding-top: 30px;
+}
+
 .photo-cover {
 	background-size: 100% auto;
 	height: 300px;
@@ -180,8 +208,27 @@ nav {
 	text-align: right;
 }
 
-ul, .slogan {
-	padding-left: 20px;
+.section {
+	padding-top: 50px;
+	padding-bottom: 50px;
+	margin: 0px;
+}
+
+@keyframes toTop {
+	from { bottom: -30px; }
+	to { bottom: 30px; }
+}
+
+@keyframes toBot {
+	from { bottom: 30px; }
+	to { bottom: -30px; }
+}
+
+#toTop {
+	position: fixed;
+	bottom: 30px;
+	left: 30px;
+	animation-duration: .5s;
 }
 
 .time-schedule li {
@@ -190,8 +237,12 @@ ul, .slogan {
 	font-size: 16pt;
 }
 
+ul, .slogan {
+	padding-left: 20px;
+}
+
 .ui-container {
-	padding-top: 70px;
+	padding-top: 50px;
 	width: 100%;
 }
 
@@ -202,6 +253,18 @@ ul, .slogan {
 .window img {
 	width: 100%;
 	height: auto;
+}
+
+.wood {
+	background-image: url("../img/wood_background.jpg");
+	color: #FFD5AA;
+}
+
+.wood-green {
+	background-image: url("../img/static_fine_wood.png");
+	background-color: rgba(133, 179, 84, 1);
+	color: #000000;
+	font-weight: 500;
 }
 
 /* Extra small devices (phones, less than 768px) */
