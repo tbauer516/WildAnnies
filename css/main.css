@@ -62,11 +62,20 @@ img {
 	width: 100%;
 }
 
+.img-box {
+	display: inline-block;
+}
+
+.img-box-bot {
+	margin-top: 50px;
+}
+
 .img-container {
-	width: 25%;
+	/*width: 25%;*/
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 100px;
+	text-align: center;
 }
 
 .loading {
@@ -265,7 +274,11 @@ ul, .slogan {
 	background-image: url("../img/static_fine_wood.png");
 	background-color: rgba(133, 179, 84, 1);
 	color: #000000;
-	font-weight: 500;
+	font-weight: 600;
+}
+
+.wood-green h2 {
+	font-weight: 600;
 }
 
 /* Extra small devices (phones, less than 768px) */
@@ -275,7 +288,11 @@ ul, .slogan {
 @media screen and (min-width: 768px) {
 
 	body {
-		font-size: 16pt;
+		font-size: 18pt;
+	}
+
+	h1 {
+		font-size: 42pt;
 	}
 
 	.post-message {

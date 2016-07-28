@@ -188,18 +188,33 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
 
     $scope.shouldBeVisible = false;
 
-    $document.on('scroll', function() {
-        console.log('Document scrolled to ', $document.scrollLeft(), $document.scrollTop());
-        if ($document.scrollTop() > 300) {
-            $scope.shouldBeVisible = true;
-            document.getElementById("toTop").setAttribute("animation-name", "toTop");
-        } else {
-            document.getElementById("toTop").setAttribute("animation-name", "toBot");
-            $scope.shouldBeVisible = false;
-        }
-        $scope.$apply();
-    });
+    // $document.on('scroll', function() {
+    //     console.log('Document scrolled to ', $document.scrollLeft(), $document.scrollTop());
+    //     if ($document.scrollTop() > 300) {
+    //         $scope.shouldBeVisible = true;
+    //         document.getElementById("toTop").setAttribute("animation-name", "toTop");
+    //     } else {
+    //         document.getElementById("toTop").setAttribute("animation-name", "toBot");
+    //         $scope.shouldBeVisible = false;
+    //     }
+    //     $scope.$apply();
+    // });
 
+    $scope.setImgSize = function() {
+        var imgwindow = document.querySelector("#img-window");
+        var top = document.querySelector("#img-top");
+        var bot = document.querySelector("#img-bot");
+
+        var newheight = 50 + parseInt(window.getComputedStyle(top, null).getPropertyValue('height'))
+                + parseInt(window.getComputedStyle(bot, null).getPropertyValue('height'));
+
+        imgwindow.style.height = newheight + "px";
+    }
+
+    angular.element(document).ready(function () {
+        $scope.setImgSize();
+        //your logic here
+    });
 }])
 
 .controller('MenuCtrl', ['$scope', function($scope) {
@@ -248,6 +263,20 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
 
 
 }])
+
+.directive('fixHeight',function(){
+    return {
+        link: function(scope,element,attr){
+            //here you should be aware of possibility to 
+            //use jqLite to set or get your height like in jquery
+
+
+
+            var getHeight = element.css('height');
+            element.css('height',100500); // set height
+        }
+    }
+})
 
 .directive('setMinHeight', function ($window) {
     return function (scope, element) {
