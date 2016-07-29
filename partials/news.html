@@ -1,0 +1,30 @@
+<div class="post-master">
+	<a href={{pageUrl}} target="_blank">
+		<div class="photo-cover" ng-style="{'background-image': 'url(' + feed.cover + ')'}">
+			<img class="photo-profile" ng-src="{{feed.picture}}" alt="profile picture">
+		</div>
+	</a>
+	<div class="posts">
+		<ul class="posts-list">
+			<!-- <li class="post-heading">{{feed.name}}</li> -->
+			<li class="post" ng-repeat="post in feed.posts | orderBy: '-time'">
+				<div>
+					<a ng-href="{{post.link}}" target="_blank">
+						<p class="post-message">{{post.message || post.story}}</p>
+					</a>
+					<div ng-if="post.photo" class="window">
+						<img ng-src="{{post.photo}}" alt="image for the facebook post" />
+					</div>
+					<p class="post-time">{{post.time | date: 'M-d-y: h:ma'}}</p>
+				</div>
+			</li>
+			<!-- <li class="post-message">{{post.message || post.story}}</li>
+			<li class="post-time">{{post.time | date: 'M-d-y: h:ma'}}</li> -->
+		</ul>
+		<!-- <div>
+			{{feed.name}}<br>
+			{{post.time | date: 'M-d-y: h:ma'}}<br>
+			{{post.message || post.story}}
+		</div> -->
+	</div>
+</div>

@@ -9,6 +9,11 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
             templateUrl: 'partials/home.html',
             controller: 'HomeCtrl'
         })
+        .state('news', {
+            url: '/news',
+            templateUrl: 'partials/news.html',
+            controller: 'NewsCtrl'
+        })
         .state('menu', {
             url: '/menu',
             templateUrl: 'partials/menu.html',
@@ -77,6 +82,43 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
 }])
 
 .controller('HomeCtrl', ['$scope', '$document', '$timeout', '$http', function($scope, $document, $timeout, $http) {
+
+    $scope.scrollToTop = function() {
+        $document.scrollTo(0, 0, 500);
+    }
+
+    $scope.shouldBeVisible = false;
+
+    // $document.on('scroll', function() {
+    //     console.log('Document scrolled to ', $document.scrollLeft(), $document.scrollTop());
+    //     if ($document.scrollTop() > 300) {
+    //         $scope.shouldBeVisible = true;
+    //         document.getElementById("toTop").setAttribute("animation-name", "toTop");
+    //     } else {
+    //         document.getElementById("toTop").setAttribute("animation-name", "toBot");
+    //         $scope.shouldBeVisible = false;
+    //     }
+    //     $scope.$apply();
+    // });
+
+    $scope.setImgSize = function() {
+        var imgwindow = document.querySelector(".img-box-window");
+        var top = document.querySelector("#img-top");
+        var bot = document.querySelector("#img-bot");
+
+        var newheight = 50 + parseInt(window.getComputedStyle(top, null).getPropertyValue('height'))
+                + parseInt(window.getComputedStyle(bot, null).getPropertyValue('height'));
+
+        imgwindow.style.height = newheight + "px";
+    }
+
+    angular.element(document).ready(function () {
+        // $scope.setImgSize();
+        //your logic here
+    });
+}])
+
+.controller('NewsCtrl', ['$scope', '$timeout', '$http', function($scope, $timeout, $http) {
 
     $scope.feed = [];
 
@@ -182,39 +224,6 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
     }
     ,5000);
 
-    $scope.scrollToTop = function() {
-        $document.scrollTo(0, 0, 500);
-    }
-
-    $scope.shouldBeVisible = false;
-
-    // $document.on('scroll', function() {
-    //     console.log('Document scrolled to ', $document.scrollLeft(), $document.scrollTop());
-    //     if ($document.scrollTop() > 300) {
-    //         $scope.shouldBeVisible = true;
-    //         document.getElementById("toTop").setAttribute("animation-name", "toTop");
-    //     } else {
-    //         document.getElementById("toTop").setAttribute("animation-name", "toBot");
-    //         $scope.shouldBeVisible = false;
-    //     }
-    //     $scope.$apply();
-    // });
-
-    $scope.setImgSize = function() {
-        var imgwindow = document.querySelector("#img-window");
-        var top = document.querySelector("#img-top");
-        var bot = document.querySelector("#img-bot");
-
-        var newheight = 50 + parseInt(window.getComputedStyle(top, null).getPropertyValue('height'))
-                + parseInt(window.getComputedStyle(bot, null).getPropertyValue('height'));
-
-        imgwindow.style.height = newheight + "px";
-    }
-
-    angular.element(document).ready(function () {
-        $scope.setImgSize();
-        //your logic here
-    });
 }])
 
 .controller('MenuCtrl', ['$scope', function($scope) {
@@ -248,13 +257,15 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
         var height = window.innerHeight;
         var width = window.innerWidth;
         main.style.height = (height - (footerHeight + footerMarginTop + navHeight + navMarginBottom) - 10) + 'px';
-        main.style.width = (width - 20) + 'px';
+        // main.style.width = (width - 20) + 'px';
         main.style.maxHeight = "800px";
-        main.style.maxWidth = "800px";
+        // main.style.maxWidth = "800px";
         // main.style.padding = "20px";
     }
 
-    $scope.setMapSize();
+    angular.element(document).ready(function () {
+        $scope.setMapSize();
+    });
 
 }])
 

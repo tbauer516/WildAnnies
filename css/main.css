@@ -36,6 +36,10 @@ body {
     text-align: center;
 }
 
+.no-centered {
+	text-align: initial;
+}
+
 .fb-page, .fb-page iframe[style], .fb-page span {
     width: 100% !important;
 }
@@ -62,12 +66,29 @@ img {
 	width: 100%;
 }
 
-.img-box {
-	display: inline-block;
+#img-tl {
+	background-image: url('../img/window.jpg');
 }
 
-.img-box-bot {
-	margin-top: 50px;
+#img-tr {
+	background-image: url('../img/omlet.jpg');
+}
+
+#img-bl {
+	background-image: url('../img/parfait.jpg');
+}
+
+#img-br {
+	background-image: url('../img/fruitsalad.jpg');
+}
+
+.img-box {
+	display: inline-block;
+	background-position: center;
+	background-size: cover;
+	margin: 10px;
+	padding: 10%;
+	box-sizing: border-box;
 }
 
 .img-container {
@@ -95,10 +116,13 @@ img {
 
 .map {
 	margin-top: 20px;
+	padding-left: 40px;
+	padding-right: 40px;
 }
 
 #map-frame {
 	display: inline-block;
+	width: 100%;
 }
 
 .menu {
@@ -137,6 +161,14 @@ nav {
 
 .no-margin {
 	margin: 0px;
+}
+
+.right-margin {
+	margin-right: 30px;
+}
+
+.no-pad {
+	padding: 0px;
 }
 
 .pad-left {
@@ -234,6 +266,15 @@ nav {
 	to { bottom: -30px; }
 }
 
+.slogan {
+	padding-left: 20px;
+}
+
+.space {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
 #toTop {
 	position: fixed;
 	bottom: 30px;
@@ -245,10 +286,6 @@ nav {
 	list-style: none;
 	margin-bottom: 5px;
 	font-size: 16pt;
-}
-
-ul, .slogan {
-	padding-left: 20px;
 }
 
 .ui-container {
@@ -293,6 +330,11 @@ ul, .slogan {
 
 	h1 {
 		font-size: 42pt;
+	}
+
+	.map {
+		padding-left: 0px;
+		padding-right: 0px;
 	}
 
 	.post-message {
