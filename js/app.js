@@ -1,18 +1,13 @@
 'use strict';
 
-angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angulartics.piwik', 'angulartics.google.analytics', 'duScroll'])
+angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angulartics.piwik', 'angulartics.google.analytics', 'duScroll', 'angular.panels'])
 
-.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
+.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 'panelsProvider', function($stateProvider, $urlRouterProvider, $locationProvider, panelsProvider) {
     $stateProvider
         .state('home', {
             url: '/',
             templateUrl: 'partials/home.html',
             controller: 'HomeCtrl'
-        })
-        .state('news', {
-            url: '/news',
-            templateUrl: 'partials/news.html',
-            controller: 'NewsCtrl'
         })
         .state('menu', {
             url: '/menu',
@@ -30,6 +25,29 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
             controller: 'AboutCtrl'
         });
 
+    panelsProvider
+        .add({
+            id: "newsMenuXS",
+            position: "right",
+            size: "90%",
+            templateUrl: "../partials/news.html",
+            controller: "NewsCtrl"
+        })
+        .add({
+            id: "newsMenuSM",
+            position: "right",
+            size: "50%",
+            templateUrl: "../partials/news.html",
+            controller: "NewsCtrl"
+        })
+        .add({
+            id: "newsMenuMD",
+            position: "right",
+            size: "25%",
+            templateUrl: "../partials/news.html",
+            controller: "NewsCtrl"
+        });
+
     // $locationProvider.html5Mode(true);
 
     $urlRouterProvider.otherwise('/#');
@@ -38,7 +56,7 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
 // parent controller that houses all the ui-views
 // put all global functions and variables here to access them from
 // the other ui-views
-.controller('WildAnnieCtrl', ['$scope', function($scope) {
+.controller('WildAnnieCtrl', ['$scope', 'panels', function($scope, panels) {
 
     $scope.setSize = function() {
         var main = document.querySelector('.ui-container');
@@ -78,6 +96,24 @@ angular.module('WildAnnie', ['ui.router', 'ui.bootstrap', 'angulartics', 'angula
             // No user is signed in.
         }
     });
+
+    $scope.panel = '';
+
+    var windowWidth = window.innerWidth;
+    $scope.panel = 'newsMenuXS';
+    if (windowWidth >= 768) {
+        $scope.panel = 'newsMenuSM';
+    }
+    if (windowWidth >= 992) {
+        $scope.panel = 'newsMenuMD';
+    }
+    if (windowWidth >= 1200) {
+        $scope.panel = 'newsMenuMD';
+    }
+
+    $scope.openPanel = function() {
+        panels.open($scope.panel);
+    }
 
 }])
 

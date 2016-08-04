@@ -44,6 +44,9 @@
     <script src="lib/angulartics.min.js"></script>
     <script src="lib/angulartics-piwik.min.js"></script>
     <script src="lib/angulartics-google-analytics.min.js"></script>
+    <!-- Angular Panels -->
+    <script type="text/javascript" src="lib/angular.panels.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/angular.panels.min.css">
     
 </head>
 
@@ -77,7 +80,15 @@
         <!--/.container-fluid -->
     </nav>
 
+    <div data-panels="true"></div>
+
     <div ui-view class="ui-container"></div>
+
+    <a href="" ng-click="openPanel()">
+        <div class="panel-button">
+            Open News
+        </div>
+    </a>
 
     <footer>
         <div class="row">
